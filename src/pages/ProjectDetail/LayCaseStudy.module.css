@@ -1,0 +1,254 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 54vw, 780px);
+  background: #000;
+  overflow: hidden;
+}
+
+.heroImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 7vw, 100px);
+  padding: clamp(48px, 7vw, 80px) 0;
+}
+
+.overviewRow {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--detail-label-gap);
+  padding: 0 var(--detail-page-pad);
+}
+
+.overviewLabel {
+  flex: none;
+  width: var(--detail-label-w);
+  padding: 9px 0;
+  margin: 0;
+  font-weight: var(--detail-lang-weight, 500);
+  font-size: 14px;
+  line-height: var(--detail-lang-lh, 1.5);
+  letter-spacing: var(--detail-lang-ls-16, -0.06em);
+  color: #999;
+}
+
+.overviewContent {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  min-width: 0;
+  gap: var(--detail-heading-gap);
+}
+
+.title {
+  flex: none;
+  width: var(--detail-heading-w);
+  margin: 0;
+  font-weight: var(--detail-lang-weight, 500);
+  font-size: 56px;
+  line-height: var(--detail-lang-lh, 1.5);
+  letter-spacing: -0.08em;
+  color: #fff;
+}
+
+.description {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.subtitle {
+  margin: 0;
+  font-family: var(--detail-lang-font, 'Pretendard', sans-serif);
+  font-weight: var(--detail-lang-weight, 600);
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: var(--detail-lang-lh, 1.5);
+  letter-spacing: var(--detail-lang-ls-24, -0.05em);
+  color: #fff;
+  white-space: pre-line;
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--detail-lang-font, 'Pretendard', sans-serif);
+  font-weight: var(--detail-lang-weight, 500);
+  font-size: 16px;
+  line-height: var(--detail-lang-lh, 1.5);
+  letter-spacing: var(--detail-lang-ls-16, -0.03em);
+  color: #999;
+}
+
+.paragraphs p {
+  margin: 0;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 6vw, 156px);
+  padding: 40px clamp(20px, 4vw, 31px) 40px var(--detail-heading-offset);
+  background: #000;
+}
+
+.metaColumn {
+  display: flex;
+  flex: 1 1 140px;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metaLabel {
+  margin: 0;
+  font-weight: var(--detail-lang-weight, 400);
+  font-size: 16px;
+  line-height: var(--detail-lang-lh, 1.5);
+  letter-spacing: var(--detail-lang-ls-16, -0.05em);
+  color: #999;
+}
+
+.metaValue {
+  font-weight: var(--detail-lang-weight, 400);
+  font-size: 16px;
+  line-height: var(--detail-lang-lh, 1.5);
+  letter-spacing: var(--detail-lang-ls-16, -0.06em);
+  color: #fff;
+}
+
+.metaValue p {
+  margin: 0;
+}
+
+.divider {
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 32px);
+}
+
+.dividerLine {
+  width: 100%;
+  height: 1px;
+  background: #555;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(64px, 9vw, 100px);
+  padding-bottom: clamp(64px, 9vw, 120px);
+}
+
+.onboarding {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--detail-label-gap);
+  padding: 0 var(--detail-page-pad);
+}
+
+.onboardingLabel {
+  flex: none;
+  width: var(--detail-label-w);
+  margin: 0;
+  font-weight: var(--detail-lang-weight, 400);
+  font-size: 14px;
+  line-height: var(--detail-lang-lh, 1.5);
+  letter-spacing: var(--detail-lang-ls-16, -0.06em);
+  color: #999;
+}
+
+.onboardingImgWrap {
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.onboardingImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 40px);
+}
+
+.sectionMedia {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.subRow {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--detail-label-gap);
+  padding: 0 var(--detail-page-pad);
+}
+
+.subRowLabel {
+  flex: none;
+  width: var(--detail-label-w);
+  margin: 0;
+  font-weight: var(--detail-lang-weight, 400);
+  font-size: 14px;
+  line-height: var(--detail-lang-lh, 1.5);
+  letter-spacing: var(--detail-lang-ls-16, -0.06em);
+  color: #999;
+}
+
+/* Kept in sync with SectionIntro.module.css / MediaBlocks.module.css: below
+   this width the label/heading/body columns stack, so these rows (and the
+   meta bar, which otherwise reads --detail-heading-offset) follow suit. */
+
+@media (max-width: 1024px) {
+  .overviewRow {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .overviewLabel {
+    width: auto;
+  }
+
+  .overviewContent {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .title {
+    width: auto;
+  }
+
+  .metaRow {
+    padding-left: var(--detail-page-pad);
+  }
+
+  .onboarding,
+  .subRow {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .onboardingLabel,
+  .subRowLabel {
+    width: auto;
+  }
+}
