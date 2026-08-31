@@ -44,6 +44,27 @@ export function FullBleedImage({ src, aspect, alt = '', noReveal = false }) {
   )
 }
 
+// Same full-bleed wrapper as FullBleedImage, but for a live, interactive
+// embed (e.g. a deployed prototype) instead of a static image/video.
+export function FullBleedEmbed({ src, aspect, title = '' }) {
+  const [ref, inView] = useReveal()
+  const className = `${styles.fullBleed} ${reveal.reveal} ${inView ? reveal.revealIn : ''}`
+
+  return (
+    <div ref={ref} className={className}>
+      <div className={styles.fullBleedInner} style={{ aspectRatio: aspect }}>
+        <iframe
+          src={src}
+          title={title}
+          className={styles.embedFrame}
+          loading="lazy"
+          allow="clipboard-write"
+        />
+      </div>
+    </div>
+  )
+}
+
 // A numbered sub-heading + paragraph(s), sitting alone at the heading offset
 // (no separate label/heading columns) — used for Pitch's "1. Task Flow
 // Thread" / "2. Data Preview" style groups, each followed by its own media.

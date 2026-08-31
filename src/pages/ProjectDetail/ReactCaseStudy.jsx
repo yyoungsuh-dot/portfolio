@@ -1,7 +1,7 @@
 // Every media block is a clip from react-case-study, in page order: hero ->
 // preview -> ui structure 1 -> interaction-comment (x4 sub-clips) -> ui
-// structure 2 -> interaction-viewing -> icons. Only the final "Prototype"
-// image is a still exported straight from Figma (node 397:8410).
+// structure 2 -> interaction-viewing -> icons. The final "Prototype" block
+// is a live embed of the deployed prototype, not a static asset.
 import heroVideo from '../../assets/react-case-study/react_0.mp4'
 import previewVideo from '../../assets/react-case-study/react_1.mp4'
 import uiStructure1Video from '../../assets/react-case-study/react_2.mp4'
@@ -12,9 +12,8 @@ import commentDrawTrackVideo from '../../assets/react-case-study/react_6.mp4'
 import uiStructure2Video from '../../assets/react-case-study/react_7.mp4'
 import interactionViewingVideo from '../../assets/react-case-study/react_8.mp4'
 import iconsVideo from '../../assets/react-case-study/react_9.mp4'
-import prototypeImage from '../../assets/react-case-study/prototype.png'
 import SectionIntro from './SectionIntro'
-import { CaptionedImage, FullBleedImage, Media } from './MediaBlocks'
+import { CaptionedImage, FullBleedImage, FullBleedEmbed, Media } from './MediaBlocks'
 import { useLanguage } from '../../context/LanguageContext'
 import { useReveal } from '../../hooks/useReveal'
 import reveal from '../../styles/reveal.module.css'
@@ -282,7 +281,11 @@ function ReactCaseStudy() {
           </SectionIntro>
 
           <div className={styles.sectionMedia}>
-            <FullBleedImage src={prototypeImage} aspect="3136 / 1764" />
+            <FullBleedEmbed
+              src="https://react-p7gs56a8t-yyoungsuh-9621s-projects.vercel.app/"
+              aspect="3136 / 1764"
+              title="React prototype"
+            />
           </div>
         </section>
       </div>
