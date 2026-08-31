@@ -46,20 +46,36 @@ export function FullBleedImage({ src, aspect, alt = '', noReveal = false }) {
 
 // Same full-bleed wrapper as FullBleedImage, but for a live, interactive
 // embed (e.g. a deployed prototype) instead of a static image/video.
-export function FullBleedEmbed({ src, aspect, title = '' }) {
+function EmbedFrame({ src, aspect, title }) {
+  return (
+    <div className={styles.fullBleedInner} style={{ aspectRatio: aspect }}>
+      <iframe
+        src={src}
+        title={title}
+        className={styles.embedFrame}
+        loading="lazy"
+        allow="clipboard-write"
+      />
+    </div>
+  )
+}
+
+export function FullBleedEmbed({ src, aspect, title = '', caption = '' }) {
   const [ref, inView] = useReveal()
-  const className = `${styles.fullBleed} ${reveal.reveal} ${inView ? reveal.revealIn : ''}`
+
+  if (!caption) {
+    return (
+      <div ref={ref} className={`${styles.fullBleed} ${reveal.reveal} ${inView ? reveal.revealIn : ''}`}>
+        <EmbedFrame src={src} aspect={aspect} title={title} />
+      </div>
+    )
+  }
 
   return (
-    <div ref={ref} className={className}>
-      <div className={styles.fullBleedInner} style={{ aspectRatio: aspect }}>
-        <iframe
-          src={src}
-          title={title}
-          className={styles.embedFrame}
-          loading="lazy"
-          allow="clipboard-write"
-        />
+    <div ref={ref} className={`${styles.captionedGroup} ${reveal.reveal} ${inView ? reveal.revealIn : ''}`}>
+      <p className={styles.caption}>{caption}</p>
+      <div className={styles.fullBleed}>
+        <EmbedFrame src={src} aspect={aspect} title={title} />
       </div>
     </div>
   )

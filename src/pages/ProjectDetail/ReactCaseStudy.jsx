@@ -79,6 +79,7 @@ const CONTENT = {
         '​',
         '직접 사용하며 댓글의 노출 개수, 등장 속도, 유지 시간 등 디테일한 사용성을 개선했습니다.',
       ],
+      embedCaption: '아래 웹에서 직접 체험해보세요!',
     },
   },
   en: {
@@ -132,6 +133,7 @@ const CONTENT = {
         '​',
         'Using it firsthand, I refined detailed usability aspects such as the number of comments shown, their appearance speed, and how long they stay on screen.',
       ],
+      embedCaption: 'Try it yourself in the embed below!',
     },
   },
 }
@@ -285,6 +287,7 @@ function ReactCaseStudy() {
               src="https://react-p7gs56a8t-yyoungsuh-9621s-projects.vercel.app/"
               aspect="3136 / 1764"
               title="React prototype"
+              caption={t.prototype.embedCaption}
             />
           </div>
         </section>
