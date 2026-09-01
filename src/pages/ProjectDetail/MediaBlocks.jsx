@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { useReveal } from '../../hooks/useReveal'
 import reveal from '../../styles/reveal.module.css'
 import styles from './MediaBlocks.module.css'
@@ -6,14 +7,47 @@ const VIDEO_SRC_RE = /\.(mp4|webm|mov)$/i
 
 // Renders a <video> (autoplay/muted/loop, no controls) for video sources and
 // an <img> otherwise, so callers can mix photos and clips through the same prop.
+//
+// Every case-study page mounts every section's media up front — without
+// gating, that means dozens of autoplaying clips all start downloading the
+// instant the page loads, regardless of scroll position. So video sources
+// are withheld (`preload="none"`, no `src`) until the element itself is
+// within `rootMargin` of the viewport, spreading the network/decode load
+// out over the scroll instead of front-loading it all at once.
 export function Media({ src, alt, className, style }) {
-  if (VIDEO_SRC_RE.test(src)) {
+  const isVideo = VIDEO_SRC_RE.test(src)
+  const videoRef = useRef(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
+  useEffect(() => {
+    if (!isVideo || shouldLoad) return
+    const el = videoRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '800px 0px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [isVideo, shouldLoad])
+
+  if (isVideo) {
     return (
       <video
+        ref={videoRef}
         className={className}
         style={style}
-        src={src}
-        autoPlay
+        src={shouldLoad ? src : undefined}
+        preload={shouldLoad ? 'auto' : 'none'}
+        autoPlay={shouldLoad}
         muted
         loop
         playsInline
@@ -23,7 +57,7 @@ export function Media({ src, alt, className, style }) {
       />
     )
   }
-  return <img src={src} alt={alt || ''} className={className} style={style} />
+  return <img src={src} alt={alt || ''} className={className} style={style} loading="lazy" decoding="async" />
 }
 
 // `noReveal` lets a parent (CaptionedImage) own the reveal instead, so the
