@@ -25,6 +25,16 @@
   border: 0;
 }
 
+/* User-driven <video controls>: contain (never crop the native control bar)
+   on a black field matching the aspect-ratio box. */
+.playerVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
 .captionedGroup {
   display: flex;
   flex-direction: column;

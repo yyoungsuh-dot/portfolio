@@ -6,6 +6,8 @@ import LayCaseStudy from './LayCaseStudy'
 import ReactCaseStudy from './ReactCaseStudy'
 import PitchCaseStudy from './PitchCaseStudy'
 import OneUiNewSpectrumCaseStudy from './OneUiNewSpectrumCaseStudy'
+import OurhourCaseStudy from './OurhourCaseStudy'
+import EchoCaseStudy from './EchoCaseStudy'
 import PasswordGate from './PasswordGate'
 import styles from './ProjectDetail.module.css'
 
@@ -91,6 +93,24 @@ function ProjectDetail() {
       <div className={styles.page}>
         <Header />
         <OneUiNewSpectrumCaseStudy />
+      </div>
+    )
+  }
+
+  if (project.slug === 'ourhour') {
+    return (
+      <div className={styles.page}>
+        <Header />
+        <OurhourCaseStudy />
+      </div>
+    )
+  }
+
+  if (project.slug === 'echo') {
+    return (
+      <div className={styles.page}>
+        <Header />
+        <EchoCaseStudy />
       </div>
     )
   }

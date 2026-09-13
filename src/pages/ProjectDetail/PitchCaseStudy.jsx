@@ -18,6 +18,7 @@ import SectionIntro from './SectionIntro'
 import { FullBleedImage, GroupIntro, Media } from './MediaBlocks'
 import { useLanguage } from '../../context/LanguageContext'
 import { useReveal } from '../../hooks/useReveal'
+import { useHeroBlur } from '../../hooks/useHeroBlur'
 import reveal from '../../styles/reveal.module.css'
 import styles from './LayCaseStudy.module.css'
 import mediaStyles from './MediaBlocks.module.css'
@@ -224,6 +225,7 @@ function ParagraphGroup({ number, title, paragraphs, video }) {
 function PitchCaseStudy() {
   const { language } = useLanguage()
   const t = CONTENT[language]
+  const heroBlur = useHeroBlur()
   const [asIsRef, asIsInView] = useReveal()
   const [toBeRef, toBeInView] = useReveal()
   const [overviewRef, overviewInView] = useReveal()
@@ -241,7 +243,7 @@ function PitchCaseStudy() {
 
   return (
     <div style={langVars}>
-      <section className={styles.hero}>
+      <section className={styles.hero} style={{ filter: `blur(${heroBlur}px)` }}>
         <Media src={heroVideo} className={styles.heroImg} />
       </section>
 
@@ -264,13 +266,13 @@ function PitchCaseStudy() {
           </div>
         </div>
 
-        <div
-          ref={metaRef}
-          className={`${styles.metaRow} ${reveal.reveal} ${metaInView ? reveal.revealIn : ''}`}
-          style={{ transitionDelay: '120ms' }}
-        >
-          {META_COLUMNS.map((column) => (
-            <div key={column[0].label} className={styles.metaColumn}>
+        <div ref={metaRef} className={styles.metaRow}>
+          {META_COLUMNS.map((column, i) => (
+            <div
+              key={column[0].label}
+              className={`${styles.metaColumn} ${reveal.reveal} ${metaInView ? reveal.revealIn : ''}`}
+              style={{ transitionDelay: `${120 + i * 150}ms` }}
+            >
               {column.map((item) => (
                 <div key={item.label} className={styles.metaItem}>
                   <p className={styles.metaLabel}>{item.label}</p>

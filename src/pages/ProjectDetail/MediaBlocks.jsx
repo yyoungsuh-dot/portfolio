@@ -78,6 +78,29 @@ export function FullBleedImage({ src, aspect, alt = '', noReveal = false }) {
   )
 }
 
+// Same full-bleed wrapper as FullBleedImage, but a user-driven <video>:
+// native controls (scrubber + play button), sound on, no autoplay, no loop.
+// For the one clip that's meant to be watched deliberately rather than
+// looping in the background.
+export function FullBleedVideo({ src, aspect, poster, alt = '' }) {
+  const [ref, inView] = useReveal()
+  return (
+    <div ref={ref} className={`${styles.fullBleed} ${reveal.reveal} ${inView ? reveal.revealIn : ''}`}>
+      <div className={styles.fullBleedInner} style={{ aspectRatio: aspect }}>
+        <video
+          className={styles.playerVideo}
+          src={src}
+          poster={poster}
+          controls
+          preload="metadata"
+          playsInline
+          aria-label={alt || undefined}
+        />
+      </div>
+    </div>
+  )
+}
+
 // Same full-bleed wrapper as FullBleedImage, but for a live, interactive
 // embed (e.g. a deployed prototype) instead of a static image/video.
 function EmbedFrame({ src, aspect, title }) {

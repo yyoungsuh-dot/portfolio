@@ -27,6 +27,7 @@ import SectionIntro from './SectionIntro'
 import { CaptionedImage, FullBleedImage, Media, TripleRow } from './MediaBlocks'
 import { useLanguage } from '../../context/LanguageContext'
 import { useReveal } from '../../hooks/useReveal'
+import { useHeroBlur } from '../../hooks/useHeroBlur'
 import reveal from '../../styles/reveal.module.css'
 import styles from './LayCaseStudy.module.css'
 
@@ -180,6 +181,7 @@ const CONTENT = {
 function LayCaseStudy() {
   const { language } = useLanguage()
   const t = CONTENT[language]
+  const heroBlur = useHeroBlur()
   const usecases = USECASE_MEDIA.map((src, index) => ({ src, caption: t.usecaseCaptions[index] }))
   const [onboardingRef, onboardingInView] = useReveal()
   const [overviewRef, overviewInView] = useReveal()
@@ -200,7 +202,7 @@ function LayCaseStudy() {
 
   return (
     <div style={langVars}>
-      <section className={styles.hero}>
+      <section className={styles.hero} style={{ filter: `blur(${heroBlur}px)` }}>
         <Media src={heroVideo} className={styles.heroImg} />
       </section>
 
@@ -223,13 +225,13 @@ function LayCaseStudy() {
           </div>
         </div>
 
-        <div
-          ref={metaRef}
-          className={`${styles.metaRow} ${reveal.reveal} ${metaInView ? reveal.revealIn : ''}`}
-          style={{ transitionDelay: '120ms' }}
-        >
-          {META_COLUMNS.map((column) => (
-            <div key={column[0].label} className={styles.metaColumn}>
+        <div ref={metaRef} className={styles.metaRow}>
+          {META_COLUMNS.map((column, i) => (
+            <div
+              key={column[0].label}
+              className={`${styles.metaColumn} ${reveal.reveal} ${metaInView ? reveal.revealIn : ''}`}
+              style={{ transitionDelay: `${120 + i * 150}ms` }}
+            >
               {column.map((item) => (
                 <div key={item.label} className={styles.metaItem}>
                   <p className={styles.metaLabel}>{item.label}</p>

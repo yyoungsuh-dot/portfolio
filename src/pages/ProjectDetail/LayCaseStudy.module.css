@@ -1,5 +1,10 @@
+/* Pinned in place (not part of scroll flow) so the section below scrolls up
+   over it, covering it, instead of it scrolling away with the page. */
 .hero {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
   width: 100%;
   height: clamp(320px, 54vw, 780px);
   background: #000;
@@ -14,10 +19,17 @@
 }
 
 .overview {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: clamp(48px, 7vw, 100px);
+  /* reserves the space the (now out-of-flow) fixed hero would have taken,
+     and gives this section an opaque backing so it visually covers the
+     hero as it scrolls up over it */
+  margin-top: clamp(320px, 54vw, 780px);
   padding: clamp(48px, 7vw, 80px) 0;
+  background: #000;
 }
 
 .overviewRow {
@@ -135,8 +147,16 @@
   margin: 0;
 }
 
+/* Every section below the fixed .hero needs its own stacking (position +
+   z-index) above it plus an opaque black background — otherwise, as each
+   one scrolls up through the hero's pinned band at the top of the
+   viewport, the hero (painted at a higher stack level than ordinary static
+   content) would render over it instead of being covered by it. */
 .divider {
+  position: relative;
+  z-index: 1;
   padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 32px);
+  background: #000;
 }
 
 .dividerLine {
@@ -146,10 +166,13 @@
 }
 
 .content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: clamp(64px, 9vw, 100px);
   padding-bottom: clamp(64px, 9vw, 120px);
+  background: #000;
 }
 
 .onboarding {
