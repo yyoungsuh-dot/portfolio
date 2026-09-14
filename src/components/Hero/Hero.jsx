@@ -98,6 +98,19 @@ function Hero() {
     return () => cancelAnimationFrame(rafId)
   }, [])
 
+  // Below this, the carousel switches from a horizontal row to a vertical
+  // stack (see the mobile sizing block below) — same interaction model,
+  // just rotated 90°.
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const mq = window.matchMedia('(max-width: 640px)')
+    const apply = () => setIsMobile(mq.matches)
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
+
   const [detailTarget, setDetailTarget] = useState(null)
   const [detailExpanding, setDetailExpanding] = useState(false)
   const [detailElapsed, setDetailElapsed] = useState(0)
@@ -230,6 +243,19 @@ function Hero() {
   const detailTargetWidth = vw
   const detailTargetHeight = clampNum(vw * 0.54, 320, 780)
 
+  // Mobile: same 5-slot carousel, laid out vertically instead of
+  // horizontally, at one constant size (no small-circle <-> expanded-pill
+  // morph — every thumbnail, including the side ones, is this size). Width
+  // fills the screen minus a 24px margin on each side; height is a little
+  // shorter than that so it reads as a rectangle, not a square, with plenty
+  // of room left for the centered title + description text to not get clipped.
+  const mobileMargin = 24
+  const mobileWidth = clampNum(vw - mobileMargin * 2, 220, 700)
+  const mobileHeight = mobileWidth * 0.85
+  const mobileGap = clampNum(vh * 0.035, 14, 28)
+  const mobileStep = mobileHeight + mobileGap
+  const edgeOffsetVertical = vh / 2
+
   // Carousel navigation, seamless 5-step handoff:
   // 1. title text + arrows fade out first
   // 2. once they're gone, the current center shrinks to a plain circle (same
@@ -243,13 +269,14 @@ function Hero() {
   const goTo = (index) => {
     if (!interactive || isAnimating) return
     const dir = index > activeIndex ? 1 : -1
+    const swipeStep = isMobile ? mobileStep : bloomStep
     setIsAnimating(true)
     setShowText(false)
     window.setTimeout(() => {
       setLocalExpand(0)
       window.setTimeout(() => {
         setSliding(true)
-        setSlideOffset(-dir * bloomStep)
+        setSlideOffset(-dir * swipeStep)
         window.setTimeout(() => {
           setSliding(false)
           setSlideOffset(0)
@@ -335,7 +362,9 @@ function Hero() {
               <div className={styles.infoCol} style={introStyle(5)}>
                 <p className={styles.infoLabel}>Contact</p>
                 <a href="mailto:yyoungsuh@gmail.com" className={styles.infoLink}>
-                  yyoungsuh@gmail.com
+                  yyoungsuh
+                  <br />
+                  @gmail.com
                 </a>
               </div>
 
@@ -361,7 +390,10 @@ function Hero() {
 
             <div
               className={`${styles.projectsRow} ${interactive ? styles.animated : ''} ${sliding ? styles.sliding : ''}`}
-              style={{ transform: `translateX(${slideOffset}px)`, pointerEvents: interactive ? 'auto' : 'none' }}
+              style={{
+                transform: isMobile ? `translateY(${slideOffset}px)` : `translateX(${slideOffset}px)`,
+                pointerEvents: interactive ? 'auto' : 'none',
+              }}
             >
               {SLOT_OFFSETS.map((offset) => {
                 const distance = Math.abs(offset)
@@ -370,8 +402,16 @@ function Hero() {
                 const sign = Math.sign(offset)
 
                 let x = 0
+                let y = 0
                 let itemOpacity = 1
-                if (distance === 1) {
+                if (isMobile) {
+                  if (distance === 1) {
+                    y = sign * lerp(mobileStep, edgeOffsetVertical, expand)
+                  } else if (distance === 2) {
+                    y = sign * lerp(mobileStep * 2, edgeOffsetVertical + mobileHeight, expand)
+                    itemOpacity = 1 - expand
+                  }
+                } else if (distance === 1) {
                   x = sign * lerp(bloomStep, edgeOffset, expand)
                 } else if (distance === 2) {
                   x = sign * lerp(bloomStep * 2, edgeOffset + baseSize, expand)
@@ -382,8 +422,10 @@ function Hero() {
                 const enterStart = 0.2 + distance * 0.05
                 const enter = interactive ? 1 : phase(progress, enterStart, enterStart + 0.15)
 
-                const width = isCenter ? lerp(baseSize, expandedWidth, expand) : baseSize
-                const height = isCenter ? lerp(baseSize, expandedHeight, expand) : baseSize
+                // Mobile: every slot is the same constant size, no small-circle
+                // <-> expanded-pill morph.
+                const width = isMobile ? mobileWidth : isCenter ? lerp(baseSize, expandedWidth, expand) : baseSize
+                const height = isMobile ? mobileHeight : isCenter ? lerp(baseSize, expandedHeight, expand) : baseSize
 
                 const textOpacity = isCenter ? textReveal : 0
                 const clickable = interactive && !isAnimating && distance <= 1
@@ -392,7 +434,9 @@ function Hero() {
                   width,
                   height,
                   opacity: itemOpacity * enter,
-                  transform: `translate(-50%, -50%) translateX(${x}px) scale(${0.4 + 0.6 * enter})`,
+                  transform: isMobile
+                    ? `translate(-50%, -50%) translateY(${y}px) scale(${0.4 + 0.6 * enter})`
+                    : `translate(-50%, -50%) translateX(${x}px) scale(${0.4 + 0.6 * enter})`,
                 }
 
                 // Click-to-detail override: side thumbnails simply fade out

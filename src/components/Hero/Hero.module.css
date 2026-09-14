@@ -298,3 +298,53 @@
   width: 100%;
   height: 100%;
 }
+
+/* Mobile: the row of circles becomes a vertical stack (driven from Hero.jsx
+   — width/height/translateY are all computed there), so only the purely
+   presentational pieces need overriding here: the title+description move
+   from a bottom-anchored strip to dead center, and the prev/next arrows
+   move from the left/right edges to the top/bottom edges. */
+@media (max-width: 640px) {
+  .textOverlay {
+    top: 0;
+    bottom: 0;
+    height: auto;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .titleText {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    gap: 8px;
+  }
+
+  .titleTextHeading {
+    font-size: clamp(20px, 7vw, 30px);
+  }
+
+  .titleTextDesc {
+    font-size: clamp(11px, 3.2vw, 14px);
+  }
+
+  .navArrow {
+    top: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .navArrow:hover {
+    transform: translateX(-50%) scale(1.15);
+  }
+
+  .navArrowPrev {
+    top: 12px;
+    bottom: auto;
+  }
+
+  .navArrowNext {
+    bottom: 12px;
+    top: auto;
+  }
+}
