@@ -267,6 +267,12 @@
   text-decoration: underline;
 }
 
+/* Only forced onto two lines on mobile, where the column is narrower — on
+   desktop the address fits on one line just fine. */
+.emailBreak {
+  display: none;
+}
+
 .infoText {
   width: 100%;
   font-weight: 500;
@@ -346,5 +352,15 @@
   .navArrowNext {
     bottom: 12px;
     top: auto;
+  }
+
+  /* Prev/next chevrons are drawn pointing left/right — rotate 90° so they
+     point up/down to match their new top/bottom position. */
+  .navArrow svg {
+    transform: rotate(90deg);
+  }
+
+  .emailBreak {
+    display: block;
   }
 }

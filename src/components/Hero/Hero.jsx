@@ -244,16 +244,18 @@ function Hero() {
   const detailTargetHeight = clampNum(vw * 0.54, 320, 780)
 
   // Mobile: same 5-slot carousel, laid out vertically instead of
-  // horizontally, at one constant size (no small-circle <-> expanded-pill
-  // morph — every thumbnail, including the side ones, is this size). Width
-  // fills the screen minus a 24px margin on each side; height is a little
-  // shorter than that so it reads as a rectangle, not a square, with plenty
-  // of room left for the centered title + description text to not get clipped.
+  // horizontally — same small-circle <-> expanded-rectangle morph as
+  // desktop (mobileBaseSize <-> mobileWidth/mobileHeight, driven by the
+  // same `expand` value), just rotated 90°. Expanded width fills the screen
+  // minus a margin on each side; expanded height is a little shorter than
+  // that so it reads as a rectangle, not a square, with plenty of room left
+  // for the centered title + description text to not get clipped.
   const mobileMargin = 24
-  const mobileWidth = clampNum(vw - mobileMargin * 2, 220, 700)
+  const mobileWidth = clampNum((vw - mobileMargin * 2) * 0.9, 200, 640)
   const mobileHeight = mobileWidth * 0.85
+  const mobileBaseSize = clampNum(mobileWidth * 0.42, 120, 220)
   const mobileGap = clampNum(vh * 0.035, 14, 28)
-  const mobileStep = mobileHeight + mobileGap
+  const mobileStep = mobileBaseSize + mobileGap
   const edgeOffsetVertical = vh / 2
 
   // Carousel navigation, seamless 5-step handoff:
@@ -363,7 +365,7 @@ function Hero() {
                 <p className={styles.infoLabel}>Contact</p>
                 <a href="mailto:yyoungsuh@gmail.com" className={styles.infoLink}>
                   yyoungsuh
-                  <br />
+                  <br className={styles.emailBreak} />
                   @gmail.com
                 </a>
               </div>
@@ -408,7 +410,7 @@ function Hero() {
                   if (distance === 1) {
                     y = sign * lerp(mobileStep, edgeOffsetVertical, expand)
                   } else if (distance === 2) {
-                    y = sign * lerp(mobileStep * 2, edgeOffsetVertical + mobileHeight, expand)
+                    y = sign * lerp(mobileStep * 2, edgeOffsetVertical + mobileBaseSize, expand)
                     itemOpacity = 1 - expand
                   }
                 } else if (distance === 1) {
@@ -422,10 +424,22 @@ function Hero() {
                 const enterStart = 0.2 + distance * 0.05
                 const enter = interactive ? 1 : phase(progress, enterStart, enterStart + 0.15)
 
-                // Mobile: every slot is the same constant size, no small-circle
-                // <-> expanded-pill morph.
-                const width = isMobile ? mobileWidth : isCenter ? lerp(baseSize, expandedWidth, expand) : baseSize
-                const height = isMobile ? mobileHeight : isCenter ? lerp(baseSize, expandedHeight, expand) : baseSize
+                // Same small-circle <-> expanded-rectangle morph on mobile as
+                // desktop — only the size constants differ.
+                const width = isMobile
+                  ? isCenter
+                    ? lerp(mobileBaseSize, mobileWidth, expand)
+                    : mobileBaseSize
+                  : isCenter
+                    ? lerp(baseSize, expandedWidth, expand)
+                    : baseSize
+                const height = isMobile
+                  ? isCenter
+                    ? lerp(mobileBaseSize, mobileHeight, expand)
+                    : mobileBaseSize
+                  : isCenter
+                    ? lerp(baseSize, expandedHeight, expand)
+                    : baseSize
 
                 const textOpacity = isCenter ? textReveal : 0
                 const clickable = interactive && !isAnimating && distance <= 1
