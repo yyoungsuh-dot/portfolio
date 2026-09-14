@@ -256,7 +256,7 @@ function Hero() {
   const mobileWidth = clampNum(vw - mobileMargin * 2, 200, 640)
   const mobileHeight = mobileWidth * 0.85
   const mobileBaseSize = clampNum(mobileWidth * 0.5, 130, 240)
-  const mobileGap = clampNum(vh * 0.0175, 8, 14)
+  const mobileGap = clampNum(vh * 0.032, 16, 26)
   const mobileStep = mobileBaseSize + mobileGap // spacing while shrunk to circles (mid-transition)
   const mobileExpandedStep = mobileHeight + mobileGap // spacing at rest, same-size thumbnails
 
@@ -499,15 +499,31 @@ function Hero() {
                       className={styles.projectImg}
                       style={PROTECTED_SLUGS.has(project.slug) ? { filter: 'blur(14px)' } : undefined}
                     />
-                    {/* Mobile + centered: the lock moves above the title instead
-                        (rendered inside .titleText below), with no "Password
-                        required" label. Everywhere else (desktop, or mobile
-                        while not centered/no title showing) keeps the classic
-                        centered icon — label included on desktop only. */}
-                    {PROTECTED_SLUGS.has(project.slug) && !(isMobile && isCenter) && (
-                      <div className={styles.lockOverlay}>
+                    {/* Mobile + centered: this centered "Password required"
+                        fades out exactly as the title fades in (opacity tied
+                        to 1 - textOpacity) — handing off to the lock-above-
+                        title version rendered inside .titleText below, which
+                        fades in on the same textOpacity. Desktop, and the
+                        non-centered peek on mobile, are unaffected: fully
+                        visible at all times (label included on desktop only). */}
+                    {PROTECTED_SLUGS.has(project.slug) && (
+                      <div
+                        className={styles.lockOverlay}
+                        style={
+                          isMobile && isCenter
+                            ? {
+                                opacity: 1 - textOpacity,
+                                transitionDuration: interactive
+                                  ? `${showText ? TEXT_SHOW_MS : TEXT_HIDE_MS}ms`
+                                  : undefined,
+                                transitionProperty: interactive ? 'opacity' : undefined,
+                                transitionTimingFunction: interactive ? 'ease' : undefined,
+                              }
+                            : undefined
+                        }
+                      >
                         <img src={lockIcon} alt="" className={styles.lockIcon} />
-                        {!isMobile && <p className={styles.lockText}>Password required</p>}
+                        {(!isMobile || isCenter) && <p className={styles.lockText}>Password required</p>}
                       </div>
                     )}
                     {isCenter && (
