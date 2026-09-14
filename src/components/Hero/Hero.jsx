@@ -244,19 +244,21 @@ function Hero() {
   const detailTargetHeight = clampNum(vw * 0.54, 320, 780)
 
   // Mobile: same 5-slot carousel, laid out vertically instead of
-  // horizontally — same small-circle <-> expanded-rectangle morph as
-  // desktop (mobileBaseSize <-> mobileWidth/mobileHeight, driven by the
-  // same `expand` value), just rotated 90°. Expanded width fills the screen
-  // minus a margin on each side; expanded height is a little shorter than
-  // that so it reads as a rectangle, not a square, with plenty of room left
-  // for the centered title + description text to not get clipped.
+  // horizontally. Unlike desktop (where only the center ever grows past a
+  // small circle), every slot here is the same size at rest — the small
+  // circle only appears as a transient mid-transition state, all slots
+  // morphing to it and back together via the same `expand` value. Expanded
+  // width fills the screen minus a margin on each side; expanded height is
+  // a little shorter than that so it reads as a rectangle, not a square,
+  // with plenty of room left for the centered title + description text to
+  // not get clipped.
   const mobileMargin = 24
   const mobileWidth = clampNum(vw - mobileMargin * 2, 200, 640)
   const mobileHeight = mobileWidth * 0.85
   const mobileBaseSize = clampNum(mobileWidth * 0.5, 130, 240)
   const mobileGap = clampNum(vh * 0.0175, 8, 14)
-  const mobileStep = mobileBaseSize + mobileGap
-  const edgeOffsetVertical = vh / 2
+  const mobileStep = mobileBaseSize + mobileGap // spacing while shrunk to circles (mid-transition)
+  const mobileExpandedStep = mobileHeight + mobileGap // spacing at rest, same-size thumbnails
 
   // Carousel navigation, seamless 5-step handoff:
   // 1. title text + arrows fade out first
@@ -408,9 +410,9 @@ function Hero() {
                 let itemOpacity = 1
                 if (isMobile) {
                   if (distance === 1) {
-                    y = sign * lerp(mobileStep, edgeOffsetVertical, expand)
+                    y = sign * lerp(mobileStep, mobileExpandedStep, expand)
                   } else if (distance === 2) {
-                    y = sign * lerp(mobileStep * 2, edgeOffsetVertical + mobileBaseSize, expand)
+                    y = sign * lerp(mobileStep * 2, mobileExpandedStep * 2, expand)
                     itemOpacity = 1 - expand
                   }
                 } else if (distance === 1) {
@@ -424,19 +426,18 @@ function Hero() {
                 const enterStart = 0.2 + distance * 0.05
                 const enter = interactive ? 1 : phase(progress, enterStart, enterStart + 0.15)
 
-                // Same small-circle <-> expanded-rectangle morph on mobile as
-                // desktop — only the size constants differ.
+                // Mobile: every slot (center and side) morphs together
+                // between the small circle and the full thumbnail size —
+                // the circle only ever appears mid-transition; at rest
+                // they're all the same size. Desktop keeps its own model,
+                // where only the center ever grows past baseSize.
                 const width = isMobile
-                  ? isCenter
-                    ? lerp(mobileBaseSize, mobileWidth, expand)
-                    : mobileBaseSize
+                  ? lerp(mobileBaseSize, mobileWidth, expand)
                   : isCenter
                     ? lerp(baseSize, expandedWidth, expand)
                     : baseSize
                 const height = isMobile
-                  ? isCenter
-                    ? lerp(mobileBaseSize, mobileHeight, expand)
-                    : mobileBaseSize
+                  ? lerp(mobileBaseSize, mobileHeight, expand)
                   : isCenter
                     ? lerp(baseSize, expandedHeight, expand)
                     : baseSize
