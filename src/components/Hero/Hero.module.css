@@ -192,6 +192,13 @@
   color: #fff;
 }
 
+/* Mobile only (see .titleText) — the lock sits just above the title instead
+   of centered over the whole thumbnail with a "Password required" label. */
+.lockIconAboveTitle {
+  width: 20px;
+  height: 20px;
+}
+
 .textOverlay {
   position: absolute;
   left: 0;

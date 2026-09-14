@@ -251,10 +251,10 @@ function Hero() {
   // that so it reads as a rectangle, not a square, with plenty of room left
   // for the centered title + description text to not get clipped.
   const mobileMargin = 24
-  const mobileWidth = clampNum((vw - mobileMargin * 2) * 0.9, 200, 640)
+  const mobileWidth = clampNum(vw - mobileMargin * 2, 200, 640)
   const mobileHeight = mobileWidth * 0.85
-  const mobileBaseSize = clampNum(mobileWidth * 0.42, 120, 220)
-  const mobileGap = clampNum(vh * 0.035, 14, 28)
+  const mobileBaseSize = clampNum(mobileWidth * 0.5, 130, 240)
+  const mobileGap = clampNum(vh * 0.0175, 8, 14)
   const mobileStep = mobileBaseSize + mobileGap
   const edgeOffsetVertical = vh / 2
 
@@ -498,10 +498,15 @@ function Hero() {
                       className={styles.projectImg}
                       style={PROTECTED_SLUGS.has(project.slug) ? { filter: 'blur(14px)' } : undefined}
                     />
-                    {PROTECTED_SLUGS.has(project.slug) && (
+                    {/* Mobile + centered: the lock moves above the title instead
+                        (rendered inside .titleText below), with no "Password
+                        required" label. Everywhere else (desktop, or mobile
+                        while not centered/no title showing) keeps the classic
+                        centered icon — label included on desktop only. */}
+                    {PROTECTED_SLUGS.has(project.slug) && !(isMobile && isCenter) && (
                       <div className={styles.lockOverlay}>
                         <img src={lockIcon} alt="" className={styles.lockIcon} />
-                        <p className={styles.lockText}>Password required</p>
+                        {!isMobile && <p className={styles.lockText}>Password required</p>}
                       </div>
                     )}
                     {isCenter && (
@@ -527,6 +532,9 @@ function Hero() {
                               : undefined,
                           }}
                         >
+                          {isMobile && PROTECTED_SLUGS.has(project.slug) && (
+                            <img src={lockIcon} alt="" className={styles.lockIconAboveTitle} />
+                          )}
                           <p className={styles.titleTextHeading}>{project.title}</p>
                           <div className={styles.titleTextDesc}>
                             {project.desc.map((line) => (
