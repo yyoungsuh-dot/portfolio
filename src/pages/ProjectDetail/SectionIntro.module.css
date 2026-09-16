@@ -33,7 +33,7 @@
   flex-direction: column;
   font-family: var(--detail-lang-font, 'Pretendard', sans-serif);
   font-weight: var(--detail-lang-weight, 600);
-  font-size: 24px;
+  font-size: 20px;
   line-height: var(--detail-lang-lh, 1.4);
   letter-spacing: var(--detail-lang-ls-24, -0.05em);
   color: #fff;

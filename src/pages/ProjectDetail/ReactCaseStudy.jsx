@@ -96,7 +96,7 @@ const CONTENT = {
     uiStructure1: {
       heading: ['Dynamic elements', 'of video expression'],
       paragraph:
-        "We defined the dynamic elements that make a video expressive as four things: the position of every object in the video, that object's shape, its movement, and sound. By grafting these four elements onto the text-based comment experience, we derived interactive features that let comment creators directly control dynamic elements.",
+        "I defined the dynamic elements that make a video expressive as four things: the position of every object in the video, that object's shape, its movement, and sound. By grafting these four elements onto the text-based comment experience, I derived interactive features that let comment creators directly control dynamic elements.",
     },
     interactionComment: {
       heading: ['Interactive', 'comment features'],
@@ -112,7 +112,7 @@ const CONTENT = {
     uiStructure2: {
       heading: ['Hooking patterns', 'of content'],
       paragraph:
-        'Content that hooks viewers deliberately withholds key information to drive participation, sparks natural debate through comparison, stokes competition between fandoms, or places a twist near the end to keep people watching until the finish. By grafting these four hooking patterns onto the viewing experience, we derived interactive viewing features that let viewers participate more actively and stay longer.',
+        'Content that hooks viewers deliberately withholds key information to drive participation, sparks natural debate through comparison, stokes competition between fandoms, or places a twist near the end to keep people watching until the finish. By grafting these four hooking patterns onto the viewing experience, I derived interactive viewing features that let viewers participate more actively and stay longer.',
     },
     interactionViewing: {
       heading: ['Interactive', 'viewing features'],

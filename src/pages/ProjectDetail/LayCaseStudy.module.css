@@ -82,7 +82,7 @@
   margin: 0;
   font-family: var(--detail-lang-font, 'Pretendard', sans-serif);
   font-weight: var(--detail-lang-weight, 600);
-  font-size: clamp(18px, 2.2vw, 24px);
+  font-size: clamp(18px, 2.2vw, 20px);
   line-height: var(--detail-lang-lh, 1.5);
   letter-spacing: var(--detail-lang-ls-24, -0.05em);
   color: #fff;
