@@ -5,6 +5,7 @@ import dashboard2 from '../../assets/lay-case-study/dashboard-2.png'
 // -> interaction (x3) -> selection gestures (x3) -> usecase (x4). Dashboard
 // stays a still since it's a composited screenshot, not a filmed shot.
 import heroVideo from '../../assets/lay-case-study/lay_0.mp4'
+import heroPoster from '../../assets/thumbnails/lay.jpg'
 import onboardingVideo from '../../assets/lay-case-study/lay_1.mp4'
 import uiStructureVideo from '../../assets/lay-case-study/lay_2.mp4'
 import spaceMapping1 from '../../assets/lay-case-study/lay_3-1.mp4'
@@ -117,7 +118,7 @@ const CONTENT = {
     overview: {
       subtitle: 'An AI projection interaction connecting physical and digital workspaces',
       paragraphs: [
-        "You may have experienced turning on a translator on your smartphone while talking to a friend who speaks a different language, or retyping an unfamiliar word on your laptop while reading a book to look it up. Most convenient everyday functions like these are limited to digital devices, causing inconvenient interruptions where you have to stop what you're doing and open a screen. This gap not only makes tasks cumbersome but also disrupts immersion and causes you to miss out on creativity that can only be gained in offline environments.",
+        "You may have experienced turning on a translator on your smartphone while talking to a friend who speaks a different language, or retyping an unfamiliar word on your laptop while reading a book to look it up. Most convenient everyday functions like these are limited to digital devices, causing inconvenient interruptions where you have to stop what you're doing and open a screen. This gap not only makes the workflow more cumbersome but also disrupts immersion, causing us to miss out on the creativity that can only be found beyond the screen.",
         '​',
         "Lay is a projector that recognizes physical environments and objects to directly project and manipulate AI functions, enabling seamless offline work without switching between digital devices. I designed interaction patterns where physical environments and digital layers naturally merge while remaining clearly perceivable and controllable.",
       ],
@@ -203,7 +204,7 @@ function LayCaseStudy() {
   return (
     <div style={langVars}>
       <section className={styles.hero} style={{ filter: `blur(${heroBlur}px)` }}>
-        <Media src={heroVideo} className={styles.heroImg} />
+        <Media src={heroVideo} className={styles.heroImg} eager poster={heroPoster} />
       </section>
 
       <section className={styles.overview}>

@@ -14,10 +14,20 @@ const VIDEO_SRC_RE = /\.(mp4|webm|mov)$/i
 // are withheld (`preload="none"`, no `src`) until the element itself is
 // within `rootMargin` of the viewport, spreading the network/decode load
 // out over the scroll instead of front-loading it all at once.
-export function Media({ src, alt, className, style }) {
+//
+// `eager` skips that gating entirely — for the one video that's already on
+// screen the instant the page mounts (the hero). `poster` matters for the
+// same case: a freshly-mounted <video> has nothing decoded yet, so without
+// a poster it paints solid black for as long as the file takes to fetch —
+// visible as a flash right where the click-to-detail transition (Hero.jsx)
+// hands off to this exact spot on the page. Passing the same still frame
+// used as that project's carousel thumbnail as `poster` means something is
+// already on screen (identical to what the capsule was just showing)
+// before the video itself is ready.
+export function Media({ src, alt, className, style, eager = false, poster }) {
   const isVideo = VIDEO_SRC_RE.test(src)
   const videoRef = useRef(null)
-  const [shouldLoad, setShouldLoad] = useState(false)
+  const [shouldLoad, setShouldLoad] = useState(eager)
 
   useEffect(() => {
     if (!isVideo || shouldLoad) return
@@ -45,6 +55,7 @@ export function Media({ src, alt, className, style }) {
         ref={videoRef}
         className={className}
         style={style}
+        poster={poster}
         src={shouldLoad ? src : undefined}
         preload={shouldLoad ? 'auto' : 'none'}
         autoPlay={shouldLoad}
@@ -57,7 +68,16 @@ export function Media({ src, alt, className, style }) {
       />
     )
   }
-  return <img src={src} alt={alt || ''} className={className} style={style} loading="lazy" decoding="async" />
+  return (
+    <img
+      src={src}
+      alt={alt || ''}
+      className={className}
+      style={style}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  )
 }
 
 // `noReveal` lets a parent (CaptionedImage) own the reveal instead, so the

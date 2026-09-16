@@ -100,7 +100,7 @@ const CONTENT = {
     solution: {
       heading: ["An AR goggle that supports a", "paramedic's entire workflow"],
       paragraphs: [
-        "We equipped goggles — once just safety gear — with AR features that support a paramedic's entire workflow, to shorten the time each stage of emergency response takes, designing a product and PUI optimized for paramedics in emergency situations. We also designed the UI around the priority and urgency of information and how its arrangement affects visibility.",
+        "We equipped goggles — once just safety gear — with AR features that support a paramedic's entire workflow, to shorten the time each stage of emergency response takes, designing a product and PUI optimized for paramedics in emergency situations. I especially designed the UI around the priority and urgency of information and how its arrangement affects visibility.",
       ],
       captions: ['Headband-type HMD', 'Rear high-capacity battery', 'Analog dial'],
     },
@@ -155,7 +155,7 @@ function EchoCaseStudy() {
   return (
     <div style={langVars}>
       <section className={styles.hero} style={{ filter: `blur(${heroBlur}px)` }}>
-        <Media src={heroImage} className={styles.heroImg} />
+        <Media src={heroImage} className={styles.heroImg} eager />
       </section>
 
       <section className={styles.overview}>

@@ -7,6 +7,7 @@
 //
 // Reproduced from Figma (file wwLUcp45SyEFKXiEkWeWWE, node 248:26215).
 import heroVideo from '../../assets/ourhour_case-study/ourhour_0.mp4'
+import heroPoster from '../../assets/thumbnails/ourhour.jpg'
 import problem1 from '../../assets/ourhour_case-study/ourhour_1-1.gif'
 import problem2 from '../../assets/ourhour_case-study/ourhour_1-2.gif'
 import problem3 from '../../assets/ourhour_case-study/ourhour_1-3.gif'
@@ -162,7 +163,7 @@ const CONTENT = {
     brandIdentity: {
       heading: ['An identity expressing the union of two mobilities, and time'],
       paragraphs: [
-        "Two circular motifs — one for the parent's wheelchair wheel, one for the child's stroller wheel — are combined to express the idea that the two of them are 'making our own time' together. The symbol reads at once as a parent holding a child and as the form of a clock. We also extended the product's core value into the copy structure OUR [ ___ ] HOUR, so the brand story is delivered as one consistent message.",
+        "Two circular motifs — one for the parent's wheelchair wheel, one for the child's stroller wheel — are combined to express the idea that the two of them are 'making our own time' together. The symbol reads at once as a parent holding a child and as the form of a clock. I also extended the product's core value into the copy structure OUR [ ___ ] HOUR, so the brand story is delivered as one consistent message.",
       ],
     },
     worryFree: {
@@ -227,7 +228,7 @@ function OurhourCaseStudy() {
   return (
     <div style={langVars}>
       <section className={styles.hero} style={{ filter: `blur(${heroBlur}px)` }}>
-        <Media src={heroVideo} className={styles.heroImg} />
+        <Media src={heroVideo} className={styles.heroImg} eager poster={heroPoster} />
       </section>
 
       <section className={styles.overview}>

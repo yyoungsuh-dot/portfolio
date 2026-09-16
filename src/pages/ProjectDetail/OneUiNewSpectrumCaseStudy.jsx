@@ -7,6 +7,7 @@
 // token-based Figma MCP) through Overview, UI Direction, Color System,
 // Interaction Concept, and all five per-appliance sections.
 import heroVideo from '../../assets/oneuinewspectrum-case-study/oneui_0.mp4'
+import heroPoster from '../../assets/thumbnails/one-ui-new-spectrum.jpg'
 import prioritizeCoreTaskImg from '../../assets/oneuinewspectrum-case-study/oneui_1-1.png'
 import minimizeActionsImg from '../../assets/oneuinewspectrum-case-study/oneui_1-2.png'
 import ensureInstantVisibilityImg from '../../assets/oneuinewspectrum-case-study/oneui_1-3.png'
@@ -173,7 +174,7 @@ function OneUiNewSpectrumCaseStudy() {
   return (
     <div style={langVars}>
       <section className={styles.hero} style={{ filter: `blur(${heroBlur}px)` }}>
-        <Media src={heroVideo} className={styles.heroImg} />
+        <Media src={heroVideo} className={styles.heroImg} eager poster={heroPoster} />
       </section>
 
       <section className={styles.overview}>

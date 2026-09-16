@@ -3,6 +3,7 @@
 // structure 2 -> interaction-viewing -> icons. The final "Prototype" block
 // is a live embed of the deployed prototype, not a static asset.
 import heroVideo from '../../assets/react-case-study/react_0.mp4'
+import heroPoster from '../../assets/thumbnails/react.jpg'
 import previewVideo from '../../assets/react-case-study/react_1.mp4'
 import uiStructure1Video from '../../assets/react-case-study/react_2.mp4'
 import commentTextVideo from '../../assets/react-case-study/react_3.mp4'
@@ -160,7 +161,7 @@ function ReactCaseStudy() {
   return (
     <div style={langVars}>
       <section className={styles.hero} style={{ filter: `blur(${heroBlur}px)` }}>
-        <Media src={heroVideo} className={styles.heroImg} />
+        <Media src={heroVideo} className={styles.heroImg} eager poster={heroPoster} />
       </section>
 
       <section className={styles.overview}>

@@ -2,6 +2,7 @@
 // interaction concept (as-is / to-be) -> interaction-task flow (x4 groups)
 // -> interaction-patterns (x2 groups) -> use case (device visual + x3 groups).
 import heroVideo from '../../assets/pitch-case-study/pitch_0.mp4'
+import heroPoster from '../../assets/thumbnails/pitch.jpg'
 import asIsVideo from '../../assets/pitch-case-study/pitch_1-1.mp4'
 import toBeVideo from '../../assets/pitch-case-study/pitch_1-2.mp4'
 import taskFlowThreadVideo from '../../assets/pitch-case-study/pitch_2.mp4'
@@ -244,7 +245,7 @@ function PitchCaseStudy() {
   return (
     <div style={langVars}>
       <section className={styles.hero} style={{ filter: `blur(${heroBlur}px)` }}>
-        <Media src={heroVideo} className={styles.heroImg} />
+        <Media src={heroVideo} className={styles.heroImg} eager poster={heroPoster} />
       </section>
 
       <section className={styles.overview}>
