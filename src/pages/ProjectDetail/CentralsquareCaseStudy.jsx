@@ -284,6 +284,11 @@ function CentralsquareCaseStudy() {
               items={[
                 { src: keyVisual1, caption: t.keyVisual.captions[0] },
                 { src: keyVisual2, caption: t.keyVisual.captions[1] },
+              ]}
+            />
+            <TripleRow
+              aspect="784 / 441"
+              items={[
                 { src: keyVisual3, caption: t.keyVisual.captions[2] },
                 { src: keyVisual4, caption: t.keyVisual.captions[3] },
               ]}
