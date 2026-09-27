@@ -51,7 +51,7 @@ const META_COLUMNS = [
 const CONTENT = {
   ko: {
     overview: {
-      subtitle: '공공기관을 위한 소프트웨어 기업\n리브랜딩 & 웹 디자인',
+      subtitle: '공공기관을 위한 소프트웨어 기업 리브랜딩 & 웹 디자인',
       paragraphs: [
         '미국 공공기관을 위한 소프트웨어 솔루션 기업 CentralSquare의 리브랜딩을 진행했습니다. 전략팀 및 개발팀과 협업해 브랜드 전략을 수립하고, 이를 기반으로 브랜드 아이덴티티, 키비주얼, 웹사이트까지 일관된 비주얼 시스템을 구축했습니다.',
       ],
@@ -191,7 +191,7 @@ function CentralsquareCaseStudy() {
         >
           <p className={styles.overviewLabel}>Overview</p>
           <div className={styles.overviewContent}>
-            <h1 className={styles.title}>
+            <h1 className={styles.title} style={{ lineHeight: 1 }}>
               CENTRAL
               <br />
               SQUARE
