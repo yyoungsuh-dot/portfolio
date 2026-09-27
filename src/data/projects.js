@@ -1,4 +1,5 @@
 import projectPitch from '../assets/thumbnails/pitch.jpg'
+import projectCentralsquare from '../assets/thumbnails/centralsquare.jpg'
 import projectOneUi from '../assets/thumbnails/one-ui-new-spectrum.jpg'
 import projectLay from '../assets/thumbnails/lay.jpg'
 import projectReact from '../assets/thumbnails/react.jpg'
@@ -17,6 +18,13 @@ export const PROJECTS = [
     img: projectOneUi,
     title: 'One UI New Spectrum',
     desc: ['Next-generation premium visual interaction for home appliances,', 'visualizing natural physical properties'],
+  },
+  {
+    id: 'centralsquare',
+    slug: 'centralsquare',
+    img: projectCentralsquare,
+    title: 'CentralSquare',
+    desc: ['Rebranding & web design', 'for a public-sector software company'],
   },
   {
     id: 'pitch',

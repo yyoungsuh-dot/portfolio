@@ -8,6 +8,7 @@ import PitchCaseStudy from './PitchCaseStudy'
 import OneUiNewSpectrumCaseStudy from './OneUiNewSpectrumCaseStudy'
 import OurhourCaseStudy from './OurhourCaseStudy'
 import EchoCaseStudy from './EchoCaseStudy'
+import CentralsquareCaseStudy from './CentralsquareCaseStudy'
 import PasswordGate from './PasswordGate'
 import styles from './ProjectDetail.module.css'
 
@@ -111,6 +112,15 @@ function ProjectDetail() {
       <div className={styles.page}>
         <Header />
         <EchoCaseStudy />
+      </div>
+    )
+  }
+
+  if (project.slug === 'centralsquare') {
+    return (
+      <div className={styles.page}>
+        <Header />
+        <CentralsquareCaseStudy />
       </div>
     )
   }
