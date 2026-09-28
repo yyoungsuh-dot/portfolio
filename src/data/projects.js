@@ -1,4 +1,6 @@
 import projectPitch from '../assets/thumbnails/pitch.jpg'
+import projectSynce from '../assets/thumbnails/synce.jpg'
+import projectBrandintimacy from '../assets/thumbnails/brandintimacy.jpg'
 import projectCentralsquare from '../assets/thumbnails/centralsquare.jpg'
 import projectOneUi from '../assets/thumbnails/one-ui-new-spectrum.jpg'
 import projectLay from '../assets/thumbnails/lay.jpg'
@@ -18,6 +20,20 @@ export const PROJECTS = [
     img: projectOneUi,
     title: 'One UI New Spectrum',
     desc: ['Next-generation premium visual interaction for home appliances,', 'visualizing natural physical properties'],
+  },
+  {
+    id: 'synce',
+    slug: 'synce',
+    img: projectSynce,
+    title: 'Synce',
+    desc: ['A platform connecting hospitals and patients', 'for post-surgery recovery care'],
+  },
+  {
+    id: 'brandintimacy',
+    slug: 'brandintimacy',
+    img: projectBrandintimacy,
+    title: 'Brand Intimacy',
+    desc: ['AI-driven global brand study web design', 'evaluating 475 brands across 22 industries'],
   },
   {
     id: 'centralsquare',

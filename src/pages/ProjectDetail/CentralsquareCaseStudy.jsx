@@ -191,7 +191,7 @@ function CentralsquareCaseStudy() {
         >
           <p className={styles.overviewLabel}>Overview</p>
           <div className={styles.overviewContent}>
-            <h1 className={styles.title} style={{ lineHeight: 1 }}>
+            <h1 className={styles.title}>
               CENTRAL
               <br />
               SQUARE

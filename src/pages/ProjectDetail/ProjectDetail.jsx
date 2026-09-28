@@ -9,6 +9,8 @@ import OneUiNewSpectrumCaseStudy from './OneUiNewSpectrumCaseStudy'
 import OurhourCaseStudy from './OurhourCaseStudy'
 import EchoCaseStudy from './EchoCaseStudy'
 import CentralsquareCaseStudy from './CentralsquareCaseStudy'
+import BrandintimacyCaseStudy from './BrandintimacyCaseStudy'
+import SynceCaseStudy from './SynceCaseStudy'
 import PasswordGate from './PasswordGate'
 import styles from './ProjectDetail.module.css'
 
@@ -121,6 +123,24 @@ function ProjectDetail() {
       <div className={styles.page}>
         <Header />
         <CentralsquareCaseStudy />
+      </div>
+    )
+  }
+
+  if (project.slug === 'brandintimacy') {
+    return (
+      <div className={styles.page}>
+        <Header />
+        <BrandintimacyCaseStudy />
+      </div>
+    )
+  }
+
+  if (project.slug === 'synce') {
+    return (
+      <div className={styles.page}>
+        <Header />
+        <SynceCaseStudy />
       </div>
     )
   }

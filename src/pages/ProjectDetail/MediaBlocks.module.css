@@ -154,3 +154,7 @@
     flex-direction: column;
   }
 }
+
+.conceptStrip {
+  margin-top: -64px;
+}

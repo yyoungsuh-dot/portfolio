@@ -93,7 +93,7 @@ const CONTENT = {
         '바람의 밀도에 따른 컬러 스펙트럼과 바람결을 시각화하여 온도, 속도 등의 증감을 직관적으로 보여주고자 했습니다. 단계별 조작이 아닌, 슬라이더를 통한 섬세한 조작이 가능하도록 설계하여, 조작의 손맛과 통제감을 강화하고자 했습니다.',
     },
     fridge: {
-      heading: ['제품의 공간감과 얼음의 냉기를', '시각화한 냉장고'],
+      heading: ['제품 구획과 얼음의 냉기를', '시각화한 냉장고'],
       paragraph:
         '얼음의 컬러 스펙트럼과 서리와 같은 텍스처 표현, 온도가 낮아짐에 따라 가장자리부터 얼어붙는 움직임을 시각화하여 기기의 에너지감과 신선함을 직관적으로 전달하고자 했습니다. 실제 냉장고를 2D 디지털 트윈 그래픽으로 표현하고, 각 칸을 직접 터치하면 확대되어 온도를 조절할 수 있는 심리스한 인터랙션을 적용했습니다.',
     },
@@ -147,7 +147,7 @@ const CONTENT = {
         "We visualized a color spectrum based on wind density and the motion of the airflow to intuitively show increases and decreases in temperature and speed. Rather than step-based control, we designed for fine-grained control via a slider, to strengthen the tactile feel and sense of control.",
     },
     fridge: {
-      heading: ["Fridge, visualizing", "the product's space and ice's chill"],
+      heading: ["Fridge, visualizing", "the product's compartment and ice's chill"],
       paragraph:
         "We visualized ice's color spectrum, a frost-like texture, and a freezing motion that spreads from the edges as the temperature drops, to intuitively convey the device's sense of energy and freshness. We rendered the actual refrigerator as a 2D digital-twin graphic, applying a seamless interaction where touching a compartment enlarges it so its temperature can be adjusted directly.",
     },
@@ -184,7 +184,7 @@ function OneUiNewSpectrumCaseStudy() {
         >
           <p className={styles.overviewLabel}>Overview</p>
           <div className={styles.overviewContent}>
-            <h1 className={styles.title} style={{ lineHeight: 1 }}>
+            <h1 className={styles.title}>
               One UI
               <br />
               New

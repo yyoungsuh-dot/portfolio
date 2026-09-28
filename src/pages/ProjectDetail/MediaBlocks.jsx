@@ -83,7 +83,7 @@ export function Media({ src, alt, className, style, eager = false, poster }) {
 // `noReveal` lets a parent (CaptionedImage) own the reveal instead, so the
 // caption + image fade up together as one unit rather than the image
 // re-triggering its own nested reveal.
-export function FullBleedImage({ src, aspect, alt = '', noReveal = false }) {
+export function FullBleedImage({ src, aspect, alt = '', noReveal = false, fit = 'cover' }) {
   const [ref, inView] = useReveal()
   const className = noReveal
     ? styles.fullBleed
@@ -92,7 +92,7 @@ export function FullBleedImage({ src, aspect, alt = '', noReveal = false }) {
   return (
     <div ref={noReveal ? undefined : ref} className={className}>
       <div className={styles.fullBleedInner} style={{ aspectRatio: aspect }}>
-        <Media src={src} alt={alt} className={styles.img} />
+        <Media src={src} alt={alt} className={styles.img} style={{ objectFit: fit }} />
       </div>
     </div>
   )
