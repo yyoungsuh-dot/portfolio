@@ -358,7 +358,7 @@ function Hero() {
           <p className={styles.titleTop} style={titleTopStyle}>
             <span className={styles.line} style={introStyle(0)}>Designer</span>
             <span className={styles.line} style={introStyle(1)}>who shapes</span>
-            <span className={styles.line} style={introStyle(2)}>the next contexts</span>
+            <span className={styles.line} style={introStyle(2)}>the next interaction &amp; interface</span>
           </p>
 
           <div className={styles.middle}>

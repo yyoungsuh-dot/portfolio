@@ -15,11 +15,18 @@ import projectEcho from '../assets/thumbnails/echo.jpg'
 // top of the detail page it leads into.
 export const PROJECTS = [
   {
-    id: 'one-ui-new-spectrum',
-    slug: 'one-ui-new-spectrum',
-    img: projectOneUi,
-    title: 'One UI New Spectrum',
-    desc: ['Next-generation premium visual interaction for home appliances,', 'visualizing natural physical properties'],
+    id: 'lay',
+    slug: 'lay',
+    img: projectLay,
+    title: 'Lay',
+    desc: ['AI-powered beam projector UX', 'connecting physical environments and digital layers'],
+  },
+  {
+    id: 'pitch',
+    slug: 'pitch',
+    img: projectPitch,
+    title: 'pitch',
+    desc: ['AI-powered OS interaction', 'for data productivity via side panel'],
   },
   {
     id: 'synce',
@@ -27,6 +34,13 @@ export const PROJECTS = [
     img: projectSynce,
     title: 'Synce',
     desc: ['A platform connecting hospitals and patients', 'for post-surgery recovery care'],
+  },
+  {
+    id: 'react',
+    slug: 'react',
+    img: projectReact,
+    title: 'React',
+    desc: ['From a viewing experience to an engaging experience,', 'the interactive comments and viewing UX of video content platforms.'],
   },
   {
     id: 'brandintimacy',
@@ -43,27 +57,6 @@ export const PROJECTS = [
     desc: ['Rebranding & web design', 'for a public-sector software company'],
   },
   {
-    id: 'pitch',
-    slug: 'pitch',
-    img: projectPitch,
-    title: 'pitch',
-    desc: ['AI-powered OS interaction', 'for data productivity via side panel'],
-  },
-  {
-    id: 'lay',
-    slug: 'lay',
-    img: projectLay,
-    title: 'Lay',
-    desc: ['AI-powered beam projector UX', 'connecting physical environments and digital layers'],
-  },
-  {
-    id: 'react',
-    slug: 'react',
-    img: projectReact,
-    title: 'React',
-    desc: ['From a viewing experience to an engaging experience,', 'the interactive comments and viewing UX of video content platforms.'],
-  },
-  {
     id: 'ourhour',
     slug: 'ourhour',
     img: projectOurhour,
@@ -76,5 +69,12 @@ export const PROJECTS = [
     img: projectEcho,
     title: 'Echo',
     desc: ['Future AR goggle scenario for securing', 'the golden hour in emergency'],
+  },
+  {
+    id: 'one-ui-new-spectrum',
+    slug: 'one-ui-new-spectrum',
+    img: projectOneUi,
+    title: 'One UI New Spectrum',
+    desc: ['Next-generation premium visual interaction for home appliances,', 'visualizing natural physical properties'],
   },
 ]
