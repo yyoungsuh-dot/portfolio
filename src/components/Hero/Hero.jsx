@@ -385,7 +385,6 @@ function Hero() {
               <div className={styles.infoCol} style={introStyle(5)}>
                 <p className={styles.infoLabel}>Works</p>
                 <div className={styles.infoText}>
-                  <p>Context Design/ Research</p>
                   <p>UX/UI/GUI</p>
                   <p>Motion/Interaction</p>
                 </div>
